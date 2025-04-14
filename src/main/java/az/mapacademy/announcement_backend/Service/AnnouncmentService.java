@@ -34,20 +34,20 @@ public class AnnouncmentService {
     private final AnnoucmentMapper announcmentMapper;
 
 
-    public BaseResponse<List<AnnouncmentResponse>> getAllAnnouncment(int page, int size,
-                                                                     SortDirection sortCreatedDate,String name,String description) {
-        Page<Announcment> announcmentPage = announcmentDao.findAll(page, size,sortCreatedDate,name,description);
-        List<Announcment> announcments = announcmentPage.getContent();
-        log.info("Announcments found : {}", announcments);
+    public BaseResponse<List<AnnouncmentResponse>> getAllAnnouncements(
+            int page, int size, SortDirection sortCreatedDate, String name, String description) {
+        Page<Announcment> announcementsPage = announcmentDao.findAll(page, size, sortCreatedDate, name, description);
+        List<Announcment> announcements = announcementsPage.getContent();
+        log.info("Announcements found: {}", announcements);
 
 
         Integer totalCount = announcmentDao.getAnnouncmentTotalCount();
         log.info("Total announcment count : {}", totalCount);
-        var announcmentList = announcmentMapper.toResponseList(announcments);
+        var announcmentList = announcmentMapper.toResponseList(announcements);
 
         BaseResponse<List<AnnouncmentResponse>> baseResponse = new BaseResponse<>();
         baseResponse.setData(announcmentList);
-        baseResponse.setPageCount(announcmentPage.getTotalPages());
+        baseResponse.setPageCount(announcementsPage.getTotalPages());
         return baseResponse;
     }
 

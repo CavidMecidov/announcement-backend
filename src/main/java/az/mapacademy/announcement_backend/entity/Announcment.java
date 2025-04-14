@@ -16,10 +16,15 @@ import java.time.LocalDateTime;
 public class Announcment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
+    @Column(name= "annoucnement_ID")
 private Long announcnementid;
 private String name;
 private String description;
-private Long annoouncement_number;
+private Long announcement_number;
+private String Phone_number;
+private String Sales_full_name;
 private Double price;
 private Boolean delivery;
 private LocalDateTime created_date;

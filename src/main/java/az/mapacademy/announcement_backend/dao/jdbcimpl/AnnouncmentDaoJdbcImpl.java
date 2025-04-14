@@ -60,7 +60,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
                 announcment.setAnnouncnementid(resultSet.getLong("annoucnement_ID"));
                 announcment.setName(resultSet.getString("Name"));
                 announcment.setDescription(resultSet.getString("Description"));
-                announcment.setAnnoouncement_number(resultSet.getLong("announcement_number"));
+                announcment.setAnnouncement_number(resultSet.getLong("announcement_number"));
                 announcment.setPrice(resultSet.getDouble("PRICE"));
                 announcment.setPhone_number(resultSet.getString("Phone_number"));
                 announcment.setSales_full_name(resultSet.getString("Sales_full_name"));
@@ -68,7 +68,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
 
                 Timestamp createDate = resultSet.getTimestamp("Creadet_date");
                 LocalDateTime localDateTimeCreated = createDate.toLocalDateTime();
-                announcment.setCreadet_date(localDateTimeCreated);
+                announcment.setCreated_date(localDateTimeCreated);
 
 
                 Timestamp ModifiedDate = resultSet.getTimestamp("Modified_date");
@@ -101,7 +101,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstants.CREATE_ANNOUNCMENT_QUERY);
             preparedStatement.setString(1, announcment.getName());
             preparedStatement.setString(2, announcment.getDescription());
-            preparedStatement.setLong(3, announcment.getAnnoouncement_number());
+            preparedStatement.setLong(3, announcment.getAnnouncement_number());
             preparedStatement.setDouble(4, announcment.getPrice());
             preparedStatement.setString(5, announcment.getPhone_number());
             preparedStatement.setString(6, announcment.getSales_full_name());
@@ -151,7 +151,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
 
                 Timestamp createDate = resultSet.getTimestamp("created_date");
                 LocalDateTime createdDateTime = createDate.toLocalDateTime();
-                announcement.setCreadet_date(createdDateTime);
+                announcement.setCreated_date(createdDateTime);
 
                 Timestamp modifiedDate = resultSet.getTimestamp("modified_date");
                 LocalDateTime modifiedDateTime = modifiedDate.toLocalDateTime();

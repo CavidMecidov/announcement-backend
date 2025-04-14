@@ -20,22 +20,24 @@ public interface AnnoucmentMapper {
 
     AnnouncmentResponse toDto(Announcment announcment);
 
-    @Mapping(target = "annoouncement_number", expression = "java(generatedAnnouncmentNumber())")
+    @Mapping(target = "announcement_number", expression = "java(generatedAnnouncementNumber() )")
     @Mapping(source = "cityid", target = "city.cityid")
     @Mapping(source = "categoryid", target = "category.categoryid")
-    @Mapping(target= "created_date",expression = "java(getNow()")
-    @Mapping(target= "modified_date",expression = "java(getNow()")
+    @Mapping(target= "created_date",expression = "java(getNow())")
+    @Mapping(target= "modified_date",expression = "java(getNow())")
     Announcment toEntity(CreateAnnouncmentRequest request);
 
     Announcment toEntity(Long announcmentid, UpdateAnnouncmentRequest announcmentRequest);
 
     void populate(UpdateAnnouncmentRequest request, @MappingTarget Announcment announcment);
 
-    default Long generatedAnnouncmentNumber() {
+    default Long generatedAnnouncementNumber() {
         double d = Math.random() * 1000000;
         return (long) d;
     }
+
     default LocalDateTime getNow(){
     return  LocalDateTime.now();
     }
+
 }

@@ -1,6 +1,6 @@
 package az.mapacademy.announcement_backend.Service;
 
-import az.mapacademy.announcement_backend.OldMapper.CityMapper;
+import az.mapacademy.announcement_backend.Mapper.CityMapper;
 import az.mapacademy.announcement_backend.dao.CityDao;
 import az.mapacademy.announcement_backend.dao.jdbcimpl.CityDaoJdbcImpl;
 import az.mapacademy.announcement_backend.dto.CityDto;

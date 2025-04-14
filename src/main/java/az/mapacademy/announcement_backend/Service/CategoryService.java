@@ -1,6 +1,8 @@
 package az.mapacademy.announcement_backend.Service;
 
-import az.mapacademy.announcement_backend.OldMapper.CategoryMapper;
+
+
+import az.mapacademy.announcement_backend.Mapper.CategoryMapper;
 import az.mapacademy.announcement_backend.dao.CategoryDao;
 import az.mapacademy.announcement_backend.dao.jdbcimpl.CategoryDaoJdbcImpl;
 import az.mapacademy.announcement_backend.dto.CategoryDto;

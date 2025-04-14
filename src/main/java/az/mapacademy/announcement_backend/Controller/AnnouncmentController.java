@@ -22,9 +22,9 @@ public class AnnouncmentController {
 
 
     @GetMapping
-    public BaseResponse<List<AnnouncmentResponse>> getAnnouncment(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam(value = "sortByCreatedDate", required = false) SortDirection sortCreatedDate, @RequestParam(value = "name", required = false, defaultValue = "") String name, @RequestParam(value = "description", required = false, defaultValue = "") String description) {
+    public BaseResponse<List<AnnouncmentResponse>> getAnnouncments(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam(value = "sortByCreatedDate", required = false) SortDirection sortCreatedDate, @RequestParam(value = "name", required = false, defaultValue = "") String name, @RequestParam(value = "description", required = false, defaultValue = "") String description) {
         log.info("Get announcment API called");
-        return announcmentService.getAllAnnouncment(page, size, sortCreatedDate, name, description);
+        return announcmentService.getAllAnnouncements(page, size, sortCreatedDate, name, description);
     }
 
     @PostMapping

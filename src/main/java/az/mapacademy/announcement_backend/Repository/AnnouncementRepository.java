@@ -13,17 +13,18 @@ import java.util.List;
 public interface AnnouncementRepository extends JpaRepository<Announcment, Long> {
 
     List<Announcment> findAllByNameContainingAndDescription( String name, String description, Pageable pageable);
-     @Query("""
-             select a from Announcment 
-            a where a.name like '%' || :name || '%'
-            and a.description like '%' || :description|| '% """)
+    @Query("""
+       select a1 from Announcment a1 
+       where a1.name like concat('%', :name, '%') 
+       and a1.description like concat('%', :description, '%')
+       """)
      Page<Announcment> findAllWithJpql(@Param("name")String name, @Param("description")String description, Pageable pageable);
 
-     @Query(value = """ 
-             select * from announcments 
-             where  like concat( '%' :name,'%')
-            and  like concat( '%' :description,'%')"""
-     ,nativeQuery = true)
+    @Query(value = """
+       select * from annoucnements
+       where name like concat('%', :name, '%') 
+       and description like concat('%', :description, '%')
+       """, nativeQuery = true)
 
      Page<Announcment> findAllWithSql(@Param("name")String name, @Param("description")String description, Pageable pageable);
 
