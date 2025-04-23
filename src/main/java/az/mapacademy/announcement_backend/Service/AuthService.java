@@ -34,7 +34,7 @@ public class AuthService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(), loginRequest.getPassword()));
-        //xeta atmasa, davam edir
+
 
         User user = userDao.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new NotFoundException("User not found"));
@@ -44,7 +44,7 @@ public class AuthService {
         return new LoginResponse(token);
     }
 
-    public UserResponse register(UserRegisterRequest request) {
+    public UserResponse register(UserRequestRegister request) {
         var user = userMapper.toUser(request);
         checkUsernameExists(user);
 

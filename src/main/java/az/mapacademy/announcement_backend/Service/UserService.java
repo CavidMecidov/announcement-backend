@@ -1,18 +1,19 @@
 package az.mapacademy.announcement_backend.Service;
 
 import az.mapacademy.announcement_backend.dao.UserDao;
-import az.mapacademy.announcement_backend.dto.UserResponse;
-import az.mapacademy.announcement_backend.dto.UserRequestUpdate;
-import az.mapacademy.announcement_backend.dto.UserUpdateStatusRequest;
+import az.mapacademy.announcement_backend.dto.*;
 import az.mapacademy.announcement_backend.entity.User;
 import az.mapacademy.announcement_backend.exception.NotFoundException;
 import az.mapacademy.announcement_backend.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Slf4j

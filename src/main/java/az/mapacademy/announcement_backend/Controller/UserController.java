@@ -1,10 +1,9 @@
-package az.mapacademy.announcement.controller;
+package az.mapacademy.announcement_backend.Controller;
 
-import az.mapacademy.announcement.dto.BaseResponse;
-import az.mapacademy.announcement.dto.UserResponse;
-import az.mapacademy.announcement.dto.UserUpdateRequest;
-import az.mapacademy.announcement.dto.UserUpdateStatusRequest;
-import az.mapacademy.announcement.service.UserService;
+import az.mapacademy.announcement_backend.Service.AuthService;
+import az.mapacademy.announcement_backend.dto.*;
+import az.mapacademy.announcement_backend.Service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final AuthService authService;
+
 
     @GetMapping("my-information")
     public BaseResponse<UserResponse> getMyInformation() {
@@ -29,8 +30,8 @@ public class UserController {
 
     @PutMapping
     public BaseResponse<UserResponse> update(
-            @RequestBody UserUpdateRequest request) {
-        var userResponse = userService.update(request);
+            @RequestBody UserRequestUpdate update) {
+        var userResponse = userService.update(update);
 
         BaseResponse<UserResponse> baseResponse = new BaseResponse<>();
         baseResponse.setData(userResponse);

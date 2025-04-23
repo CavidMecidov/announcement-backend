@@ -1,6 +1,8 @@
-package az.mapacademy.announcement.config;
+package az.mapacademy.announcement_backend.Config;
 
-import az.mapacademy.announcement.filter.AuthorizationFilter;
+import az.mapacademy.announcement_backend.filter.AuthorizationFilter;
+import az.mapacademy.announcement_backend.Config.PasswordEncoderConfig;
+import az.mapacademy.announcement_backend.filter.AuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +29,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final UserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthorizationFilter authorizationFilter;
+    private final az.mapacademy.announcement_backend.filter.AuthorizationFilter authorizationFilter;
+private final UserDetailsService userDetailsService;
+private final PasswordEncoderConfig passwordEncoder;   // private final AuthorizationFilter authorizationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -74,7 +76,7 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder.getPasswordEncoder());
 
         return daoAuthenticationProvider;
     }

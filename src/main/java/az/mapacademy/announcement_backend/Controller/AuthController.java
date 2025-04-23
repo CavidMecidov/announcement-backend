@@ -2,8 +2,9 @@ package az.mapacademy.announcement_backend.Controller;
 
 
 
+import az.mapacademy.announcement_backend.Service.AuthService;
 import az.mapacademy.announcement_backend.dto.*;
-import az.mapacademy.announcement_backend.service.AuthService;
+import az.mapacademy.announcement_backend.Service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +29,8 @@ public class AuthController {
     }
 
     @PostMapping("sign-up")
-    public BaseResponse<UserResponse> register(@RequestBody @Valid UserRegisterRequest request) {
-        var userResponse = authService.register(request);
+    public BaseResponse<UserResponse> register(@RequestBody @Valid UserRequestRegister register) {
+        var userResponse = authService.register(register);
 
         BaseResponse<UserResponse> baseResponse = new BaseResponse<>();
         baseResponse.setData(userResponse);

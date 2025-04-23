@@ -1,6 +1,7 @@
 package az.mapacademy.announcement_backend.Controller;
 
 import az.mapacademy.announcement_backend.Service.AnnouncmentService;
+import az.mapacademy.announcement_backend.Service.JwtService;
 import az.mapacademy.announcement_backend.dto.BaseResponse;
 import az.mapacademy.announcement_backend.dto.CreateAnnouncmentRequest;
 import az.mapacademy.announcement_backend.dto.AnnouncmentResponse;
@@ -22,8 +23,15 @@ public class AnnouncmentController {
 
 
     @GetMapping
-    public BaseResponse<List<AnnouncmentResponse>> getAnnouncments(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam(value = "sortByCreatedDate", required = false) SortDirection sortCreatedDate, @RequestParam(value = "name", required = false, defaultValue = "") String name, @RequestParam(value = "description", required = false, defaultValue = "") String description) {
-        log.info("Get announcment API called");
+    public BaseResponse<List<AnnouncmentResponse>> getAnnouncments(@RequestParam("page") int page,
+                                                                   @RequestParam("size") int size,
+                                                                   @RequestParam(value = "sortByCreatedDate", required = false) SortDirection sortCreatedDate,
+                                                                   @RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                                                   @RequestParam(value = "description", required = false, defaultValue = "") String description)
+                                                                   {
+
+        log.info("Get announcements API is called");
+
         return announcmentService.getAllAnnouncements(page, size, sortCreatedDate, name, description);
     }
 
