@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +26,12 @@ import java.util.Optional;
 public class AnnouncmentService {
 
     private final AnnouncmentDao announcmentDao;
+    private final UserService userService;
 
-    public AnnouncmentService(@Qualifier("announcmentDaoJpaImpl") AnnouncmentDao announcmentDao, AnnoucmentMapper announcmentMapper) {
+    public AnnouncmentService(@Qualifier("announcmentDaoJpaImpl") AnnouncmentDao announcmentDao, AnnoucmentMapper announcmentMapper, UserService userService) {
         this.announcmentDao = announcmentDao;
         this.announcmentMapper = announcmentMapper;
+        this.userService = userService;
     }
 
     private final AnnoucmentMapper announcmentMapper;
@@ -51,11 +54,15 @@ public class AnnouncmentService {
         return baseResponse;
     }
 
-    public void createAnnouncment(CreateAnnouncmentRequest request) {
+    public AnnouncmentResponse createAnnouncment(CreateAnnouncmentRequest request) {
         Announcment announcment = announcmentMapper.toEntity(request);
         log.info("Announcment create entity: {}", announcment);
-        announcmentDao.create(announcment);
-
+        String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();//-  username goturmek
+        var user = userService.getByUsername(username).orElseThrow
+                (() -> new NotFoundException("User not found"));
+        announcment.setUser(user);
+         announcment = announcmentDao.create(announcment);
+         return announcmentMapper.toResponseList(announcment);
 
     }
 
@@ -70,7 +77,7 @@ public class AnnouncmentService {
         announcmentDao.update(announcement);
     }
 
-    }
+}
 
 
 

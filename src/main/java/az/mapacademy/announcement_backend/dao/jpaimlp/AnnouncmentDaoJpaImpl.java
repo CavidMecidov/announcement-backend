@@ -42,9 +42,9 @@ public class AnnouncmentDaoJpaImpl implements AnnouncmentDao {
     }
 
     @Override
-    public void create(Announcment announcment) {
+    public Announcment create(Announcment announcment) {
         System.out.println("Create in Jpa is call");
-        announcementRepository.save(announcment);
+         return announcementRepository.save(announcment);
 
     }
 

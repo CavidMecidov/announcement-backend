@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AnnouncmentDao {
     Page<Announcment> findAll(int page, int size, SortDirection sortCreatedDat,String name,String description);
-    void create(Announcment announcment);
+    Announcment create(Announcment announcment);
     void update(Announcment announcment);
     Optional<Announcment> findById(Long announcementId);
     Integer getAnnouncmentTotalCount();

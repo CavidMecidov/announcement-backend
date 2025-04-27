@@ -2,10 +2,7 @@ package az.mapacademy.announcement_backend.Controller;
 
 import az.mapacademy.announcement_backend.Service.AnnouncmentService;
 import az.mapacademy.announcement_backend.Service.JwtService;
-import az.mapacademy.announcement_backend.dto.BaseResponse;
-import az.mapacademy.announcement_backend.dto.CreateAnnouncmentRequest;
-import az.mapacademy.announcement_backend.dto.AnnouncmentResponse;
-import az.mapacademy.announcement_backend.dto.UpdateAnnouncmentRequest;
+import az.mapacademy.announcement_backend.dto.*;
 import az.mapacademy.announcement_backend.enums.SortDirection;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +33,12 @@ public class AnnouncmentController {
     }
 
     @PostMapping
-    public void create(@RequestBody @Valid CreateAnnouncmentRequest request) {
+    public BaseResponse<AnnouncmentResponse> create(@RequestBody @Valid CreateAnnouncmentRequest request) {
         log.info("Create  annoucment API called,request: {}", request);
-        announcmentService.createAnnouncment(request);
+        var response = announcmentService.createAnnouncment(request);
+        BaseResponse<AnnouncmentResponse> baseResponse = new BaseResponse<>();
+        baseResponse.setData(response);
+        return baseResponse;
     }
 
     @PutMapping("{announcmentid}")

@@ -95,7 +95,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
         return Page.empty();
     }
 @Override
-    public void create(Announcment announcment) {
+    public Announcment create(Announcment announcment) {
         try (Connection connection = DatabaseConfig.getConnection()) {
             log.info("Create announcment Query: {}", QueryConstants.CREATE_ANNOUNCMENT_QUERY);
             PreparedStatement preparedStatement = connection.prepareStatement(QueryConstants.CREATE_ANNOUNCMENT_QUERY);
@@ -112,6 +112,7 @@ public class AnnouncmentDaoJdbcImpl implements AnnouncmentDao {
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }
+        return  null;
     }
 @Override
     public void update(Announcment announcment) {

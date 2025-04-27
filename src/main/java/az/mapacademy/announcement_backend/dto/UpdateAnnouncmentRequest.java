@@ -14,6 +14,5 @@ public class UpdateAnnouncmentRequest {
     @Min(value = 0, message = "Price must be than or equal zero")
 
     private Double price;
-    private String sales_full_name;
     private Boolean delivery;
 }
